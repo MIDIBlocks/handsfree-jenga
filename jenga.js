@@ -229,7 +229,6 @@ var jengaGame = (function(){
 		};
 		
 		handleMouseMove = function( evt ) {
-			
 			var ray, intersection,
 				i, scalar;
 			
@@ -250,7 +249,6 @@ var jengaGame = (function(){
 		};
 		
 		handleMouseUp = function( evt ) {
-			
 			if ( selected_block !== null ) {
 				_vector.set( 1, 1, 1 );
 				selected_block.setAngularFactor( _vector );

@@ -4,7 +4,10 @@
 handsfree.use('pinchClick', {
   config: {
     // Number of pixels that the finger/thumb tips must be within to trigger a click
-    pinchDistance: 40
+    pinchDistance: 40,
+
+    // Number of frames after a click is NOT detected to actually release the click (helps with errors)
+    numErrorFrames: 5
   },
 
   // Number of frames mouse has been downed
@@ -13,6 +16,8 @@ handsfree.use('pinchClick', {
   mouseUpped: false,
   // Whether one of the morph confidences have been met
   thresholdMet: false,
+  // Number of frames after a click is NOT detected to actually release the click (helps with errors)
+  numErrorFrames: 5,
 
   onUse() {
     this.throttle(this.config.throttle)
@@ -43,24 +48,32 @@ handsfree.use('pinchClick', {
     const c = Math.sqrt(a*a + b*b)
     this.thresholdMet = c < this.config.pinchDistance
 
-    // Click/release and add body classes
+    // Count errors
+    if (this.thresholdMet) {
+      this.numErrorFrames = 0
+    } else {
+      ++this.numErrorFrames
+    }
+
+    // Mouse drag
+    if (this.mouseDowned && this.numErrorFrames < this.config.numErrorFrames) {
+      hand.pointer.state = 'mousemove'
+    }
+
+    // Check if clicked down
     if (this.thresholdMet && !this.mouseDowned) {
       this.mouseDowned = true
       this.mouseUpped = false
       document.body.classList.add('handsfree-clicked')
       hand.pointer.state = 'mousedown'
+    }
+
     // Release
-    } else if (this.mouseDowned && !this.mouseUpped) {
+    if (!this.thresholdMet && !this.mouseUpped && this.numErrorFrames < this.config.numErrorFrames) {
       this.mouseDowned = false
       this.mouseUpped = true
-      hand.pointer.state = 'mouseup'
       document.body.classList.remove('handsfree-clicked')
-    // Move
-    } else if (this.mouseDowned && this.thresholdMet) {
-      hand.pointer.state = 'mousemove'
-    // Nothing
-    } else if (!this.thresholdMet) {
-      hand.pointer.state = ''
+      hand.pointer.state = 'mouseup'
     }
 
     window.renderer && hand.pointer.state && this.click(hand)
@@ -72,9 +85,14 @@ handsfree.use('pinchClick', {
   click(hand) {
     const $el = document.elementFromPoint(hand.pointer.x, hand.pointer.y)
     if ($el) {
-      const ev = document.createEvent('MouseEvents')
-      ev.initEvent(hand.pointer.state, true, true)
-      window.renderer.domElement.dispatchEvent(ev)
+      window.renderer.domElement.dispatchEvent(
+        new MouseEvent(hand.pointer.state, {
+          bubbles: true,
+          cancelable: true,
+          clientX: hand.pointer.x,
+          clientY: hand.pointer.y
+        })
+      )
       hand.pointer.$target = $el
     }
   },
