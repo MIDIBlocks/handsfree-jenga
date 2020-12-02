@@ -1,6 +1,8 @@
 var jengaGame = (function(){
 
 	"use strict";
+
+	Physijs = window.Physijs
 	
 	Physijs.scripts.worker = 'physijs_worker.js';
 	Physijs.scripts.ammo = 'ammo.js';
@@ -33,7 +35,6 @@ var jengaGame = (function(){
 	_v3 = new THREE.Vector3;
 
 	function initScene(){
-
 		physics_stats = new Stats();
 		physics_stats.domElement.style.position = 'absolute';
 		physics_stats.domElement.style.top = '50px';
@@ -228,7 +229,6 @@ var jengaGame = (function(){
 		};
 		
 		handleMouseMove = function( evt ) {
-			
 			var ray, intersection,
 				i, scalar;
 			
@@ -249,7 +249,6 @@ var jengaGame = (function(){
 		};
 		
 		handleMouseUp = function( evt ) {
-			
 			if ( selected_block !== null ) {
 				_vector.set( 1, 1, 1 );
 				selected_block.setAngularFactor( _vector );
@@ -261,24 +260,24 @@ var jengaGame = (function(){
 		};
 
 	function render(){
-
-		
 		renderer.autoClear = false;//efines whether the renderer should automatically clear its output before rendering.
         renderer.clear();
   		renderer.render(backgroundscene, backgroundCamera);
-		
 
 		scene.simulate(); // starts the physijs physics engine
 
 		requestAnimationFrame(render);
 		renderer.render(scene, camera);
 
+		window.renderer = renderer
+	}
+
+	setTimeout(() => {
+		initScene()
 		renderer.domElement.addEventListener( 'mousedown', handleMouseDown );
 		renderer.domElement.addEventListener( 'mousemove', handleMouseMove );
 		renderer.domElement.addEventListener( 'mouseup', handleMouseUp );
-	}
-
-	window.onload = initScene;
+	})
 
 	return {
 		scene: scene
