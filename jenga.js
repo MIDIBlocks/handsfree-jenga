@@ -262,24 +262,24 @@ var jengaGame = (function(){
 		};
 
 	function render(){
-
-		
 		renderer.autoClear = false;//efines whether the renderer should automatically clear its output before rendering.
         renderer.clear();
   		renderer.render(backgroundscene, backgroundCamera);
-		
 
 		scene.simulate(); // starts the physijs physics engine
 
 		requestAnimationFrame(render);
 		renderer.render(scene, camera);
 
+		window.renderer = renderer
+	}
+
+	setTimeout(() => {
+		initScene()
 		renderer.domElement.addEventListener( 'mousedown', handleMouseDown );
 		renderer.domElement.addEventListener( 'mousemove', handleMouseMove );
 		renderer.domElement.addEventListener( 'mouseup', handleMouseUp );
-	}
-
-	setTimeout(() => {initScene()})
+	})
 
 	return {
 		scene: scene
