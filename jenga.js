@@ -1,6 +1,8 @@
 var jengaGame = (function(){
 
 	"use strict";
+
+	Physijs = window.Physijs
 	
 	Physijs.scripts.worker = 'physijs_worker.js';
 	Physijs.scripts.ammo = 'ammo.js';
@@ -33,7 +35,6 @@ var jengaGame = (function(){
 	_v3 = new THREE.Vector3;
 
 	function initScene(){
-
 		physics_stats = new Stats();
 		physics_stats.domElement.style.position = 'absolute';
 		physics_stats.domElement.style.top = '50px';
@@ -278,7 +279,7 @@ var jengaGame = (function(){
 		renderer.domElement.addEventListener( 'mouseup', handleMouseUp );
 	}
 
-	window.onload = initScene;
+	setTimeout(() => {initScene()})
 
 	return {
 		scene: scene
