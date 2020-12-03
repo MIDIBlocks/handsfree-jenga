@@ -132,7 +132,7 @@ function startHandsfree () {
  */
 function loadDep (src, callback) {
   const $script = document.createElement('script')
-  $script.src = src + '?v=' + Math.random()
+  $script.src = src// + '?v=' + Math.random()
 
   if (callback) {
     $script.onload = callback
