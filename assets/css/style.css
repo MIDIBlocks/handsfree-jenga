@@ -38,8 +38,8 @@ td:last-child {
 }
 
 /* Glitch Button */
-.glitchButton {
-  position: fixed;
+html body .glitchButton {
+  position: fixed !important;
   top: 20px;
   right: 100px;
 }
