@@ -36,3 +36,18 @@ td:last-child {
   position: absolute;
   top: 0;
 }
+
+/* Glitch Button */
+.glitchButton {
+  position: fixed;
+  top: 20px;
+  right: 100px;
+}
+
+.glitchOpenWindowElement {
+  right: -20px;
+}
+
+.buttonLinks.embed {
+  display: none;
+}
