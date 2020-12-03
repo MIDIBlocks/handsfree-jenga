@@ -82,6 +82,8 @@ var jengaGame = (function(){
 		amb_light = new THREE.AmbientLight( 0x444444 );
 		scene.add( amb_light );
 
+		scene.background = new THREE.Color( 0xe3e2e3 )
+
         // directional light
 		dir_light = new THREE.DirectionalLight( 0xFFFFFF  );
 		dir_light.position.set( 100, 100, -20 );
@@ -100,7 +102,7 @@ var jengaGame = (function(){
         scene.add(dir_light );
 		
 		var tableTexture = Physijs.createMaterial(
-				new THREE.MeshLambertMaterial({map: loader.load('/assets/img/wood7.jpg')}),
+				new THREE.MeshLambertMaterial({map: loader.load('/assets/img/table.png')}),
 				.9,
 				.2
 			);
