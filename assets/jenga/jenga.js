@@ -89,12 +89,12 @@ var jengaGame = (function(){
 		dir_light.position.set( 100, 100, -20 );
         dir_light.target.position.copy( scene.position );
         dir_light.castShadow = true;
-        dir_light.shadowCameraLeft = -300;
-		dir_light.shadowCameraTop = -300;
-		dir_light.shadowCameraRight = 300;
-		dir_light.shadowCameraBottom = 300;
-		dir_light.shadowCameraNear = 20;
-		dir_light.shadowCameraFar = 500;
+        dir_light.shadow.camera.left = -300;
+		dir_light.shadow.camera.top = -300;
+		dir_light.shadow.camera.right = 300;
+		dir_light.shadow.camera.bottom = 300;
+		dir_light.shadow.camera.near = 20;
+		dir_light.shadow.camera.far = 500;
 		dir_light.shadowBias = -.001;
 		dir_light.shadowMapWidth = dir_light.shadowMapHeight = 2048;
 		dir_light.shadowDarkness = 0.5;

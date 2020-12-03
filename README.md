@@ -7,7 +7,7 @@
 
 ## About
 
-This repository demonstrates how to use Handsfree.js to interact with a Three.js environment. To see the app works refer to `/handsfree/jengaGrab.js`
+This repository demonstrates how to use Handsfree.js to interact with a Three.js environment. To see the app works refer to `/handsfree/pinchClick.js`
 
 ## How to play
 

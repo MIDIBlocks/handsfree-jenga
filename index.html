@@ -21,41 +21,8 @@
   <button class="handsfree-show-when-stopped handsfree-hide-when-loading" onclick="startHandsfree()">Start Handtracking 🧱👌</button>
   <button class="handsfree-show-when-loading" disabled>Loading...</button>
   <button class="handsfree-hide-when-loading handsfree-show-when-started negative" onclick="handsfree.stop()">Stop Handtracking</button>
-    
-  <!-- Handsfree.js -->
-  <script>
-    const handsfree = new Handsfree({hand: true})
-    
-    /**
-     * Starts Handsfree.js and the Jenga project
-     */
-    function startHandsfree () {
-      handsfree.start()
 
-      document.addEventListener('handsfree-modelLoaded', function () {
-        loadDep('handsfree/jengaGrab.js')
-        
-        // Don't judge me
-        loadDep('assets/jenga/stats.min.js',
-          () => {loadDep('assets/jenga/physi.js',
-            () => {loadDep('assets/jenga/TrackballControls.js',
-              () => {loadDep('assets/jenga/jenga.js')})})})
-      })
-    }
-
-    /**
-     * Helper for loading dependencies
-     */
-    function loadDep (src, callback) {
-      const $script = document.createElement('script')
-      $script.src = src + '?v=' + Math.random()
-
-      if (callback) {
-        $script.onload = callback
-      }
-      
-      document.body.appendChild($script)
-    }
-  </script>
+  <!-- Setup Handsfree.js -->
+  <script src="/handsfree/pinchClick.js"></script>
 </body>
 </html>
