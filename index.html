@@ -15,12 +15,39 @@
   <div class="glitchButton"></div><script src="https://button.glitch.me/button.js"></script>
 
   <!-- Scene -->
-  <div id="jenga-container" style="background-color: white;"></div>
+  <div id="jenga-container" class="handsfree-show-when-started"></div>
     
   <!-- Handsfree buttons -->
   <button class="handsfree-show-when-stopped handsfree-hide-when-loading" onclick="startHandsfree()">Start Handtracking 🧱👌</button>
   <button class="handsfree-show-when-loading" disabled>Loading...</button>
   <button class="handsfree-hide-when-loading handsfree-show-when-started negative" onclick="handsfree.stop()">Stop Handtracking</button>
+
+  <!-- Introduction screen -->
+  <div id="intro">
+    <table>
+      <tr>
+        <td>
+          <img src="https://media0.giphy.com/media/brC1Ow2v62htVmpfLh/giphy.gif" alt="">
+        </td>
+        <td>
+          <h2>How to play:</h2>
+          <ul>
+            <li>Press "Start Handtracking" (it takes a few seconds to load everything in)</li>
+            <li>🖐 Face your palm towards the screen to move the pointer</li>
+            <li>👌 Pinch your thumb and pointer finger to drag blocks around</li>
+          </ul>
+
+          <h2>Links:</h2>
+          <ul>
+            <li><a href="https://glitch.com/edit/#!/handsfree-jenga">See the source on Glitch</a></li>
+            <li><a href="https://github.com/midiblocks/handsfree-jenga">Get the code on GitHub</a></li>
+            <li><a href="https://twitter.com/midiblocks">See the docs at Handsfree.js.org</a> (still a work in progress 😅)</li>
+            <li><a href="https://twitter.com/midiblocks">Follow me on Twitter @midiblocks</a></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
 
   <!-- Setup Handsfree.js -->
   <script src="/handsfree/pinchClick.js"></script>

@@ -1,3 +1,11 @@
+/* Core elements */
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  background: #e3e2e3;
+}
+
 button {
   position: absolute;
   z-index: 99;
@@ -8,8 +16,23 @@ button {
   transform: translate(-50%)
 }
 
-html, body {
-  padding: 0;
-  margin: 0;
-  background: #e3e2e3;
+/* Intro */
+#intro {
+  padding-top: 100px;
+  width: 1200px;
+  max-width: 100%;
+  margin: auto;
+}
+
+.handsfree-started #intro {display: none}
+
+td:last-child {
+  padding-left: 20px;
+}
+
+/* Canvas */
+#jenga-container {
+  height: 100%;
+  position: absolute;
+  top: 0;
 }
