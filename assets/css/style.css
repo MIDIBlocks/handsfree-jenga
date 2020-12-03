@@ -44,10 +44,11 @@ html body .glitchButton {
   right: 100px;
 }
 
-.glitchOpenWindowElement {
-  right: -20px;
+.glitchButton .glitchOpenWindowElement {
+  top: 70px !important;
+  right: -50px !important;
 }
 
 .buttonLinks.embed {
-  display: none;
+  display: none !important;
 }
