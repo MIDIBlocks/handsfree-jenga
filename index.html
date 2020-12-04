@@ -1,69 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Jenga Three.js</title>
+  <!-- Load Handsfree.js from CDN -->
   <link rel="stylesheet" href="https://unpkg.com/handsfree@7.2.12/build/lib/assets/handsfree.css" />
   <script src="https://unpkg.com/handsfree@7.2.12/build/lib/handsfree.js"></script>
-   
-  <style>
-    button {
-      position: absolute;
-      z-index: 99;
-      top: 0;
-      left: 50%;
-      font-size: 24px;
-      padding: 20px;
-      transform: translate(-50%)
-    }
 
-    html, body {
-      padding: 0;
-      margin: 0;
-    }
-  </style>
+  <!-- App Stuff -->
+  <title>Handsfree Jenga 🧱👌</title>
+  <link rel="icon" type="image/jpg" href="/assets/img/favicon.jpg">
+  <link rel="stylesheet" href="/assets/css/normalize.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-  <a href="https://github.com/ericschv/jengathreejs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
-  <div id="jenga-container" style="background-color: white;"></div>
-    
-  <button class="handsfree-show-when-stopped handsfree-hide-when-loading" onclick="startHandsfree()"><Fa-Video /> <span>Start Handtracking 🖐</span></button>
-  <button class="handsfree-show-when-loading" disabled><Fa-Spinner :spin='true' /> <span>Loading...</span></button>
-  <button class="handsfree-hide-when-loading handsfree-show-when-started negative" onclick="handsfree.stop()"><Fa-VideoSlash /> <span>Stop Handtracking</span></button>
-    
-  <!-- Handsfree.js -->
-  <script>
-    const handsfree = new Handsfree({hand: true})
-    
-    /**
-     * Starts Handsfree.js and the Jenga project
-     */
-    function startHandsfree () {
-      handsfree.start()
+  <!-- Glitch Remix button -->
+  <div class="glitchButton"></div><script src="https://button.glitch.me/button.js"></script>
 
-      document.addEventListener('handsfree-modelLoaded', function () {
-        loadDep('handsfree/pinchClickModified.js')
-        
-        // Don't judge me
-        loadDep('stats.min.js',
-          () => {loadDep('physi.js',
-            () => {loadDep('TrackballControls.js',
-              () => {loadDep('jenga.js')})})})
-      })
-    }
+  <!-- Scene -->
+  <div id="jenga-container" class="handsfree-show-when-started"></div>
+    
+  <!-- Handsfree buttons -->
+  <button class="handsfree-show-when-stopped handsfree-hide-when-loading" onclick="startHandsfree()">Start Handtracking 🧱👌</button>
+  <button class="handsfree-show-when-loading" disabled>Loading...</button>
+  <button class="handsfree-hide-when-loading handsfree-show-when-started negative" onclick="handsfree.stop()">Stop Handtracking</button>
 
-    /**
-     * Helper for loading dependencies
-     */
-    function loadDep (src, callback) {
-      const $script = document.createElement('script')
-      $script.src = src + '?v=' + Math.random()
+  <!-- Introduction screen -->
+  <div id="intro">
+    <table>
+      <tr>
+        <td>
+          <img src="https://media0.giphy.com/media/brC1Ow2v62htVmpfLh/giphy.gif" alt="">
+        </td>
+        <td>
+          <h2>How to play:</h2>
+          <ul>
+            <li>Press "Start Handtracking" (it takes a few seconds to load everything in)</li>
+            <li>🖐 Face your palm towards the screen to move the pointer</li>
+            <li>👌 Pinch your thumb and pointer finger to drag blocks around</li>
+          </ul>
 
-      if (callback) {
-        $script.onload = callback
-      }
-      
-      document.body.appendChild($script)
-    }
-  </script>
+          <h2>Links:</h2>
+          <ul>
+            <li><a href="https://glitch.com/edit/#!/handsfree-jenga">See the source on Glitch</a></li>
+            <li><a href="https://github.com/midiblocks/handsfree-jenga">Get the code on GitHub</a></li>
+            <li><a href="https://handsfree.js.org">See the docs at Handsfree.js.org</a> (still a work in progress 😅)</li>
+            <li><a href="https://twitter.com/midiblocks">Follow me on Twitter @midiblocks</a></li>
+            <li><a href="https://github.com/ericschv/jengaThreeJs">The original Jenga repo</a></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Setup Handsfree.js -->
+  <script src="/handsfree/pinchClick.js"></script>
 </body>
 </html>
